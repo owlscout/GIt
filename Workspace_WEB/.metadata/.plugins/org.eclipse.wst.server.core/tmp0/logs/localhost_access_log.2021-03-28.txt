@@ -1,0 +1,7 @@
+127.0.0.1 - - [28/Mar/2021:02:11:23 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [28/Mar/2021:02:11:24 +0900] "GET /Jsp14_Test/ HTTP/1.1" 200 277
+0:0:0:0:0:0:0:1 - - [28/Mar/2021:02:11:25 +0900] "GET /Jsp14_Test/joinForm.jsp HTTP/1.1" 200 1472
+0:0:0:0:0:0:0:1 - - [28/Mar/2021:02:11:27 +0900] "GET /Jsp14_Test/signup/jusoPopup.jsp HTTP/1.1" 200 2321
+0:0:0:0:0:0:0:1 - - [28/Mar/2021:02:26:14 +0900] "GET /semiProject_3Team/notice.do?command=list&userrole= HTTP/1.1" 404 838
+0:0:0:0:0:0:0:1 - - [28/Mar/2021:02:26:15 +0900] "GET /semiProject_3Team/notice.do?command=select&noticeseq=1 HTTP/1.1" 404 838
+0:0:0:0:0:0:0:1 - - [28/Mar/2021:02:26:17 +0900] "GET /semiProject_3Team/ HTTP/1.1" 404 829

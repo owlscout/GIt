@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>HOME</h1>
+	<!-- hello.do 는 web.xml 에 있는거고  -->
+	<a href="hello.do?command=get">hello</a>
+	<br>
+	<!-- controller.do는 HelloServlet에서 @WebServlet으로 매핑해서 간략화한것이다.
+		그래서 두개가 다른 객체로 있는것이다 내용은같아도. -->
+	<form action="controller.do" method="post">
+		<input type="hidden" name="command" value="post" />
+		<input type="submit" value="hello" />
+	</form>
+	
+</body>
+</html>

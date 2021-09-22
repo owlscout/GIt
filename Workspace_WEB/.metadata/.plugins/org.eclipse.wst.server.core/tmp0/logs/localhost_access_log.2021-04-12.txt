@@ -1,0 +1,6 @@
+127.0.0.1 - - [12/Apr/2021:14:18:14 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [12/Apr/2021:14:18:15 +0900] "GET /Jsp05_HelloServlet/ HTTP/1.1" 200 574
+0:0:0:0:0:0:0:1 - - [12/Apr/2021:14:18:15 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [12/Apr/2021:14:18:17 +0900] "GET /Jsp05_HelloServlet/hello.do?command=get HTTP/1.1" 200 118
+0:0:0:0:0:0:0:1 - - [12/Apr/2021:14:18:18 +0900] "GET /Jsp05_HelloServlet/home.html HTTP/1.1" 200 574
+0:0:0:0:0:0:0:1 - - [12/Apr/2021:14:18:19 +0900] "POST /Jsp05_HelloServlet/controller.do HTTP/1.1" 200 122

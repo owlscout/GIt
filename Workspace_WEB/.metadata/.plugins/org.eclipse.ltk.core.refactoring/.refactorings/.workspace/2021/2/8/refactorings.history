@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;Jsp02_MultiDelete&apos;" deleteContents="true" description="Delete resource &apos;Jsp02_MultiDelete&apos;" element1="/Jsp02_MultiDelete" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1613528091070"/>&#x0A;<refactoring comment="Rename resource &apos;JS02_MultiDelete&apos; to &apos;Jsp02_MultiDelete&apos;" description="Rename resource &apos;JS02_MultiDelete&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/JS02_MultiDelete" name="Jsp02_MultiDelete" stamp="1613528161016" updateReferences="true"/>
+</session>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Jsp09_AnswerBoard_delflag&apos; to &apos;Jsp09_AnswerBoard_delflag1&apos;" description="Rename resource &apos;Jsp09_AnswerBoard_delflag&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/Jsp09_AnswerBoard_delflag" name="Jsp09_AnswerBoard_delflag1" stamp="1617080765745" updateReferences="true"/>
+</session>

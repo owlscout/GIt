@@ -1,0 +1,10 @@
+127.0.0.1 - - [16/Jun/2021:13:23:22 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [16/Jun/2021:13:23:23 +0900] "GET /Jsp14_Test/ HTTP/1.1" 200 275
+0:0:0:0:0:0:0:1 - - [16/Jun/2021:13:23:23 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [16/Jun/2021:13:23:26 +0900] "GET /Jsp14_Test/joinForm.jsp HTTP/1.1" 200 2296
+0:0:0:0:0:0:0:1 - - [16/Jun/2021:13:23:29 +0900] "GET /Jsp14_Test/signup/jusoPopup.jsp HTTP/1.1" 200 2321
+0:0:0:0:0:0:0:1 - - [16/Jun/2021:13:25:26 +0900] "GET /Jsp14_Test/signup/jusoPopup.jsp HTTP/1.1" 200 2321
+0:0:0:0:0:0:0:1 - - [16/Jun/2021:13:25:38 +0900] "POST /Jsp14_Test/signup/jusoPopup.jsp HTTP/1.1" 200 2764
+0:0:0:0:0:0:0:1 - - [16/Jun/2021:13:28:56 +0900] "GET /Jsp14_Test/joinForm.jsp HTTP/1.1" 200 2434
+0:0:0:0:0:0:0:1 - - [16/Jun/2021:13:28:57 +0900] "GET /Jsp14_Test/joinForm.jsp HTTP/1.1" 200 2434
+0:0:0:0:0:0:0:1 - - [16/Jun/2021:13:28:58 +0900] "GET /Jsp14_Test/signup/jusoPopup.jsp HTTP/1.1" 200 2321

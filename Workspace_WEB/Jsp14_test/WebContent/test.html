@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>pagination example</title>
+	<!-- 제이쿼리, pagination.js 사용을 위한 명령어 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+	<!-- 페이징에 css파일 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+</head>
+<body>
+
+<div>
+    <section>
+    	<!-- 데이터를 표시해줄 영역 -->
+        <div id="data-container"></div>
+        <!-- 페이지 막대기를 보여줄 영역 -->
+        <div id="pagination"></div>
+    </section>
+</div>
+
+<script>
+    $(function () {
+    	//페이지 막대를 그려줄 페이지네이션 div 선택
+        let container = $('#pagination');
+        container.pagination({
+        	// 배열로 된 데이터 값 넣기 기본적으로 보여주는 데이터 값은 10개
+            dataSource: [
+                {name: "hello1"},
+                {name: "hello2"},
+                {name: "hello3"},
+                {name: "hello4"},
+                {name: "hello5"},
+                {name: "hello6"},
+                {name: "hello7"},
+                {name: "hello8"},
+                {name: "hello9"},
+                {name: "hello10"},
+                {name: "hello11"},
+                {name: "hello12"},
+                {name: "hello13"},
+                {name: "hello14"},
+                {name: "hello15"},
+                {name: "hello16"},
+                {name: "hello17"},
+            ],
+            //dataSource에서 페이징하고 난 데이터값이 나온다.
+            callback: function (data, pagination) {
+            	// list 형식으로 나오게 하기위해 <ul>, <li>로 만든다
+                var dataHtml = '<ul>';
+				// 각 값을 <li>로 감싼다.
+                $.each(data, function (index, item) {
+                    dataHtml += '<li>' + item.name + '</li>';
+                });
+				
+                dataHtml += '</ul>';
+				// data-container에 <li>로 감싼 값을 넣어준다.
+                $("#data-container").html(dataHtml);
+            }
+        })
+    })
+</script>
+</body>
+</html>

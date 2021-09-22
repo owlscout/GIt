@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="address">
+	<select id="list" parameterType="String" resultType="addressDto">
+		SELECT ADDRNO, ADDNAME , USERNAME, ADDRESS_1, ADDRESS_2, ADDNO, MAINADDR
+		FROM ADDR
+		WHERE USERNAME = #{username}
+	</select>
+	
+	<select id="count" parameterType="String" resultType="int">
+		SELECT COUNT(ADDRNO)
+		FROM ADDR
+		WHERE USERNAME = #{username}
+	</select>
+	
+	<select id="main" parameterType="String" resultType="addressDto">
+		SELECT ADDRNO, ADDNAME , USERNAME, ADDRESS_1, ADDRESS_2, ADDNO, MAINADDR
+		FROM ADDR
+		WHERE USERNAME = #{username} AND MAINADDR = 'Y'
+	</select>
+	
+	<select id="find" parameterType="int" resultType="addressDto">
+		SELECT ADDRNO, ADDNAME , USERNAME, ADDRESS_1, ADDRESS_2, ADDNO, MAINADDR
+		FROM ADDR
+		WHERE ADDRNO = #{addrno}
+	</select>
+	
+	<select id="namefind" parameterType="String" resultType="addressDto">
+		SELECT ADDRNO, ADDNAME , USERNAME, ADDRESS_1, ADDRESS_2, ADDNO, MAINADDR
+		FROM ADDR
+		WHERE ADDNAME = #{addname}
+	</select>
+	
+	<insert id="insert" parameterType="addressDto">
+		INSERT INTO ADDR
+		VALUES(ADDRNOSEQ.NEXTVAL, #{addname}, #{username}, #{address_1}, #{address_2}, #{addno}, #{mainaddr})
+	</insert>
+	
+	<update id="mainupdate" parameterType="addressDto">
+		UPDATE ADDR
+		SET MAINADDR = #{mainaddr}
+		WHERE ADDRNO = #{addrno}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM ADDR
+		WHERE ADDRNO = #{addrno}
+	</delete>
+	
+	
+	
+</mapper>

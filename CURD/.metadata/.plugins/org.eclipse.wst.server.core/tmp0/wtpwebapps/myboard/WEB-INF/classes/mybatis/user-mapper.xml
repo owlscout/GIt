@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="user">
+
+	<select id="login" resultType="userDto" parameterType="userDto">
+		SELECT USERNO, USERID, USERNAME, USERROLE, ADDRESS_1, ADDRESS_2, ADDNO, USERDATE
+		FROM MYUSER
+		WHERE USERID = #{userid} AND USERPW = #{userpw}
+	</select>
+	<insert id="signup" parameterType="userDto">
+		INSERT INTO MYUSER
+		VALUES(MYUSERSEQ.NEXTVAL, #{userid}, #{userpw}, #{username}, 'USER', #{address_1}, #{address_2}, #{addno}, SYSDATE)
+	</insert>
+	<select id="idChk" parameterType="String" resultType="String">
+		SELECT USERID
+		FROM MYUSER
+		WHERE USERID = #{userid}
+	</select>
+
+</mapper>

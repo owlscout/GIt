@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="product">
+	
+	<select id="listCnt" resultType="int">
+		SELECT COUNT(PRONO)
+		FROM PRODUCT
+	</select>
+	
+	<select id="list" parameterType="com.mvc.myboard.pagingDto" resultType="productDto">
+		SELECT PRONO, PRONAME, PROTITLE, PROKATE_1, PROKATE_2, PRODATE, THUMB, PROSHOW, ORDPRICE, PRINCIPAL, TAX
+		FROM PRODUCT
+		ORDER BY PRONO DESC
+	</select>
+	
+	<select id="selectOne" resultType="productDto">
+		SELECT PRONO, PROTITLE, PROCONTENT, PRONAME, PROKATE_1, PROKATE_2, ORDPRICE, PRINCIPAL, TAX
+		FROM PRODUCT
+		WHERE PRONO = #{prono}
+	</select>
+
+	<insert id="insert" parameterType="productDto">
+		INSERT INTO PRODUCT
+		VALUES(PRONOSEQ.NEXTVAL, #{proname}, #{protitle}, #{procontent}, #{prokate_1}, #{prokate_2},
+		SYSDATE, #{thumb}, 1)
+	</insert>
+	
+	<update id="update" parameterType="productDto">
+		UPDATE PRODUCT
+		SET PROTITLE =
+		#{protitle}, PROCONTENT = #{procontent}
+		WHERE PRONO = #{prono}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM PRODUCT
+		WHERE PRONO
+		= #{prono}
+	</delete>
+	
+	<update id="mulupdate" parameterType="productDto">
+		UPDATE PRODUCT
+		SET PROTITLE = #{protitle}, PROKATE_1 = #{prokate_1}, PROKATE_2 = #{prokate_2}, PROSHOW = #{proshow}
+		WHERE PRONO = #{prono}
+	</update>
+	
+	<select id="katelist" parameterType="String" resultType="String">
+		SELECT PROKATE_2
+		FROM PRODUCT
+		WHERE PROKATE_1 = #{prokate_1}
+	</select>
+	
+	<select id="kateall" parameterType="String" resultType="productDto">
+		SELECT PRONO, PRONAME, PROTITLE, PROKATE_1, PROKATE_2, PRODATE, THUMB, PROSHOW
+		FROM PRODUCT
+		WHERE PROKATE_1 = #{prokate_1}
+	</select>
+	
+	<select id="kateselect" parameterType="productDto" resultType="productDto">
+		SELECT PRONO, PRONAME, PROTITLE, PROKATE_1, PROKATE_2, PRODATE, THUMB, PROSHOW
+		FROM PRODUCT
+		WHERE PROKATE_1 = #{prokate_1} AND PROKATE_2 = #{prokate_2}
+	</select>
+	
+	
+
+</mapper>

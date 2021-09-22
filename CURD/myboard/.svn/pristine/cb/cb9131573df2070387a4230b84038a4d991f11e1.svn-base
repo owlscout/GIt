@@ -1,0 +1,44 @@
+package com.mvc.myboard.address;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class addressBizImpl implements addressBiz {
+	
+	@Autowired
+	private addressDao dao;
+	
+	@Override
+	public List<addressDto> selectList(String username) {
+		// TODO Auto-generated method stub
+		return dao.selectList(username);
+	}
+
+	@Override
+	public int insert(addressDto dto) {
+		// TODO Auto-generated method stub
+		return dao.insert(dto);
+	}
+
+	@Override
+	public int update(addressDto dto) {
+		// TODO Auto-generated method stub
+		return dao.update(dto);
+	}
+
+	@Override
+	public int delete(int addrno) {
+		// TODO Auto-generated method stub
+		return dao.delete(addrno);
+	}
+
+	@Override
+	public int count(String username) {
+		// TODO Auto-generated method stub
+		return dao.count(username);
+	}
+
+}

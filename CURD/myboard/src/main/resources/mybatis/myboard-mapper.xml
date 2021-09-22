@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myboard">
+
+	<select id="selectList" resultType="myboardDto">
+		SELECT MYNO, MYNAME, MYTITLE,
+		MYDATE, READCOUNT
+		FROM MYBOARD
+		ORDER BY MYNO DESC
+	</select>
+
+	<select id="selectOne" resultType="myboardDto">
+		SELECT MYNO, MYNAME, MYTITLE,
+		MYCONTENT,
+		MYDATE, READCOUNT, FILEUPDOWN
+		FROM MYBOARD
+		WHERE MYNO = #{myno}
+	</select>
+
+	<insert id="insert" parameterType="myboardDto">
+		INSERT INTO MYBOARD
+		VALUES(MYNOSEQ.NEXTVAL, #{myname}, #{mytitle}, #{mycontent},
+		SYSDATE, 0, #{myboardpw}, #{fileupdown})
+	</insert>
+
+	<select id="insertafter" resultType="int">
+		SELECT MAX(MYNO)
+		FROM MYBOARD
+		WHERE MYNAME = #{myname}
+	</select>
+
+	<update id="update" parameterType="myboardDto">
+		UPDATE MYBOARD
+		SET MYTITLE =
+		#{mytitle}, MYCONTENT = #{mycontent}
+		WHERE MYNO = #{myno}
+	</update>
+
+	<update id="readcount">
+		UPDATE MYBOARD
+		SET READCOUNT = READCOUNT + 1
+		WHERE MYNO
+		= #{myno}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM MYBOARD
+		WHERE MYNO
+		= #{myno}
+	</delete>
+
+	<select id="searchtitle" resultType="myboardDto">
+		SELECT MYNO, MYNAME,
+		MYTITLE, MYDATE, READCOUNT
+		FROM MYBOARD
+		WHERE MYTITLE LIKE '%' ||
+		#{mytitle} || '%'
+		ORDER BY MYNO DESC
+	</select>
+
+	<select id="searchcontent" resultType="myboardDto">
+		SELECT MYNO, MYNAME,
+		MYTITLE, MYCONTENT, MYDATE, READCOUNT
+		FROM MYBOARD
+		WHERE MYCONTENT LIKE
+		'%' || #{mycontent} || '%'
+		ORDER BY MYNO DESC
+	</select>
+
+	<select id="searchname" resultType="myboardDto">
+		SELECT MYNO, MYNAME, MYTITLE,
+		MYDATE, READCOUNT
+		FROM MYBOARD
+		WHERE MYNAME LIKE '%' || #{myname} || '%'
+		ORDER BY MYNO DESC
+	</select>
+	
+	<select id="titleCnt" resultType="int">
+		SELECT COUNT(MYNO)
+		FROM MYBOARD
+		WHERE MYTITLE LIKE 
+		'%' || #{mytitle} || '%'
+	</select>
+
+	<select id="contentCnt" resultType="int">
+		SELECT COUNT(MYNO)
+		FROM MYBOARD
+		WHERE MYCONTENT LIKE
+		'%' || #{mycontent} || '%'
+	</select>
+
+	<select id="nameCnt" resultType="int">
+		SELECT COUNT(MYNO)
+		FROM MYBOARD
+		WHERE MYNAME LIKE '%' || #{myname} || '%'
+	</select>
+	
+	<select id="listCnt" resultType="int">
+		SELECT COUNT(MYNO)
+		FROM MYBOARD
+	</select>
+
+	<select id="listPage" parameterType="com.mvc.myboard.pagingDto" resultType="myboardDto">
+		SELECT MYNO, MYNAME, MYTITLE,
+		MYDATE, READCOUNT 
+		FROM (
+			SELECT ROWNUM RN, A.MYNO, A.MYNAME, A.MYTITLE,
+			A.MYDATE, A.READCOUNT 
+				FROM (
+						SELECT MYNO, MYNAME, MYTITLE,
+						MYDATE, READCOUNT 
+						FROM MYBOARD 
+						ORDER BY MYNO DESC 
+						) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="pwChk" parameterType="myboardDto" resultType="myboardDto">
+		SELECT MYNO, MYBOARDPW 
+		FROM MYBOARD
+		WHERE MYNO = #{myno} AND MYBOARDPW = #{myboardpw}
+	</select>
+	
+	<select id="pagingtitle" resultType="myboardDto">
+		SELECT MYNO, MYNAME, MYTITLE,
+		MYDATE, READCOUNT 
+		FROM (
+			SELECT ROWNUM RN, A.MYNO, A.MYNAME, A.MYTITLE,
+			A.MYDATE, A.READCOUNT 
+				FROM (
+						SELECT MYNO, MYNAME, MYTITLE,
+						MYDATE, READCOUNT 
+						FROM MYBOARD 
+						ORDER BY MYNO DESC 
+						) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+		AND MYTITLE LIKE '%' ||
+		#{mytitle} || '%'
+		ORDER BY MYNO DESC
+	</select>
+
+	<select id="pagingcontent" resultType="myboardDto">
+		SELECT MYNO, MYNAME, MYTITLE,
+		MYDATE, READCOUNT 
+		FROM (
+			SELECT ROWNUM RN, A.MYNO, A.MYNAME, A.MYTITLE,
+			A.MYDATE, A.READCOUNT 
+				FROM (
+						SELECT MYNO, MYNAME, MYTITLE,
+						MYDATE, READCOUNT 
+						FROM MYBOARD 
+						ORDER BY MYNO DESC 
+						) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+		AND MYCONTENT LIKE
+		'%' || #{mycontent} || '%'
+		ORDER BY MYNO DESC
+	</select>
+
+	<select id="pagingname" resultType="myboardDto">
+		SELECT MYNO, MYNAME, MYTITLE,
+		MYDATE, READCOUNT 
+		FROM (
+			SELECT ROWNUM RN, A.MYNO, A.MYNAME, A.MYTITLE,
+			A.MYDATE, A.READCOUNT 
+				FROM (
+						SELECT MYNO, MYNAME, MYTITLE,
+						MYDATE, READCOUNT 
+						FROM MYBOARD 
+						ORDER BY MYNO DESC 
+						) A
+				)
+		WHERE RN BETWEEN #{start} AND #{end}
+		AND MYNAME LIKE '%' || #{myname} || '%'
+		ORDER BY MYNO DESC
+	</select>
+
+</mapper>

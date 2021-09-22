@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="com.mvc.myboard.myboardDto" alias="myboardDto" />
+		<typeAlias type="com.mvc.myboard.userDto" alias="userDto" />
+		<typeAlias type="com.mvc.myboard.commentDto" alias="commentDto" />
+		<typeAlias type="com.mvc.myboard.product.productDto" alias="productDto" />
+		<typeAlias type="com.mvc.myboard.cart.cartDto" alias="cartDto" />
+		<typeAlias type="com.mvc.myboard.delivery.deliveryDto" alias="delDto" />
+		<typeAlias type="com.mvc.myboard.order.orderDto" alias="orderDto" />
+		<typeAlias type="com.mvc.myboard.ordhistory.ordhisDto" alias="ordhisDto" />
+	</typeAliases>
+	
+	<!-- resource : src/main/resources 와 같음 -->
+	<mappers>
+		<mapper resource="/mybatis/myboard-mapper.xml" />
+		<mapper resource="/mybatis/user-mapper.xml" />
+		<mapper resource="/mybatis/comment-mapper.xml" />
+		<mapper resource="/mybatis/product-mapper.xml" />
+		<mapper resource="/mybatis/cart-mapper.xml" />
+		<mapper resource="/mybatis/delivery-mapper.xml" />
+		<mapper resource="/mybatis/order-mapper.xml" />
+		<mapper resource="/mybatis/ordhistory-mapper.xml" />
+	</mappers>
+
+</configuration>

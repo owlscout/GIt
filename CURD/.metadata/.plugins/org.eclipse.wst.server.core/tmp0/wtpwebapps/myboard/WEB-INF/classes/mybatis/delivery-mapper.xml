@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="delivery">
+	<select id="list" parameterType="String" resultType="delDto">
+		SELECT DELNO, PROTITLE, PROAMOUT, TOTAL, USERNAME, DELSTATE, DELDATE, ADDRESS_1, ADDRESS_2
+		FROM DELIVERY
+		WHERE USERNAME = #{username}
+		ORDER BY DELNO DESC
+	</select>
+	
+	<select id="find" parameterType="String" resultType="delDto">
+		SELECT DELNO, PROTITLE, PROAMOUT, TOTAL, USERNAME, DELSTATE, DELDATE, ADDRESS_1, ADDRESS_2
+		FROM DELIVERY
+		WHERE DELNO =
+			(SELECT MAX(DELNO)
+			FROM DELIVERY
+			WHERE USERNAME = #{username})
+	</select>
+	
+	<select id="count" parameterType="String" resultType="int">
+		SELECT COUNT(DELNO)
+		FROM DELIVERY
+		WHERE USERNAME = #{username}
+	</select>
+	
+	<select id="total" parameterType="String" resultType="int">
+		SELECT SUM(TOTAL)
+		FROM DELIVERY
+		WHERE USERNAME = #{username}
+	</select>
+	
+
+	<insert id="insert" parameterType="delDto">
+		INSERT INTO DELIVERY
+		VALUES(('DEL'||TO_CHAR(SYSDATE, 'YYMMDD')||LPAD(ORDNOSEQ.NEXTVAL, 5, '0')), #{protitle} ,#{proamout}, #{total}, #{username}, '준비중입니다', TO_CHAR(SYSDATE, 'YYMMDDHH24') , #{address_1}, #{address_2})
+	</insert>
+	
+	<update id="update" parameterType="delDto">
+		UPDATE DELIVERY
+		SET DELSTATE = #{delstate}
+		WHERE DELNO = #{delno}
+	</update>
+	
+	<delete id="delete" parameterType="delDto">
+		DELETE FROM DELIVERY
+		WHERE DELNO
+		= #{delno}
+	</delete>
+	
+	<update id="cancel" parameterType="String">
+		UPDATE DELIVERY
+		SET DELSTATE = '주문 쥐소 확인 중입니다.'
+		WHERE DELNO = #{delno}
+	</update>
+	
+</mapper>

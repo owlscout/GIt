@@ -1,0 +1,8 @@
+127.0.0.1 - - [03/Aug/2021:09:55:34 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [03/Aug/2021:09:55:35 +0900] "GET /myboard/ HTTP/1.1" 200 319
+0:0:0:0:0:0:0:1 - - [03/Aug/2021:09:55:35 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [03/Aug/2021:09:55:37 +0900] "GET /myboard/listPage.do?nowPage=1&cntPerPage=10 HTTP/1.1" 200 4244
+0:0:0:0:0:0:0:1 - - [03/Aug/2021:09:55:39 +0900] "GET /myboard/login.do HTTP/1.1" 200 1818
+0:0:0:0:0:0:0:1 - - [03/Aug/2021:09:55:46 +0900] "POST /myboard/ajaxlogin.do HTTP/1.1" 200 24
+0:0:0:0:0:0:0:1 - - [03/Aug/2021:09:55:46 +0900] "GET /myboard/listPage.do?nowPage=1&cntPerPage=10 HTTP/1.1" 200 4187
+0:0:0:0:0:0:0:1 - - [03/Aug/2021:09:55:54 +0900] "GET /myboard/select.do?myno=162&nowPage=1 HTTP/1.1" 200 5487

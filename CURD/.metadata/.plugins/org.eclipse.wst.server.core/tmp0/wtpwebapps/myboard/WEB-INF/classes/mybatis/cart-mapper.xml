@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cart">
+	
+	<select id="list" resultType="cartDto" parameterType="String">
+		SELECT CARTNO, PRONO, PRONAME, PROTITLE, PROKATE_1, PROKATE_2, USERNAME, AMOUNT
+		FROM CART
+		WHERE USERNAME = #{username}
+		ORDER BY CARTNO DESC
+	</select>
+	
+	<select id="find" parameterType="cartDto" resultType="cartDto">
+		SELECT CARTNO, PRONO, PRONAME, PROTITLE, PROKATE_1, PROKATE_2, USERNAME, AMOUNT
+		FROM CART
+		WHERE USERNAME = #{username} AND PRONO = #{prono}
+	</select>
+	
+	<insert id="insert" parameterType="cartDto">
+		INSERT INTO CART
+		VALUES(CARTNOSEQ.NEXTVAL, #{prono}, #{proname} , #{protitle}, #{prokate_1}, #{prokate_2}, #{username}, #{amount})
+	</insert>
+	
+	<update id="update" parameterType="cartDto">
+		UPDATE CART
+		SET AMOUNT = AMOUNT + #{amount}
+		WHERE PRONO = #{prono} AND USERNAME = #{username}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM CART
+		WHERE CARTNO
+		= #{cartno}
+	</delete>
+	
+	<select id="count" parameterType="cartDto" resultType="int">
+		SELECT COUNT(AMOUNT)
+		FROM CART
+		WHERE PRONO = #{prono} AND USERNAME = #{username}
+	</select>
+	
+	<insert id="mulinsert" parameterType="cartDto">
+		INSERT INTO CART
+		VALUES(CARTNOSEQ.NEXTVAL, #{prono}, #{proname} , #{protitle}, #{prokate_1}, #{prokate_2}, #{username}, 1)
+	</insert>
+	
+	
+</mapper>

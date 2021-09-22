@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+		<h1>장바구니</h1>
+	<form action="mulorder.do" method="post" id="mulorder">
+	<table border="1">
+		<col width="50">
+		<col width="100">
+		<col width="100">
+		<col width="100">
+		<col width="120">
+		<col width="50">
+		<col width="50">
+		<tr>
+			<th><input type="checkbox" name="all" onclick="allCheck(this.checked);"></th>
+			<th>상품사진</th>
+			<th>상품명</th>
+			<th>대분류</th>
+			<th>소분류</th>
+			<th>수량</th>
+			<th>취소</th>
+		</tr>
+		<c:choose>
+			<c:when test="${empty list }">
+				<tr>
+					<th colspan="4">--------장바구니에 담은 상품이 없습니다-----------</th>
+				</tr>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${list }" var="dto">
+					<tr>
+						<th>
+							<input type="checkbox" class="chk" name="chk" value="${dto.prono }">
+							
+						</th>
+						<td>
+							<img src="image/upload/${dto.proname }/${dto.protitle}" width="140" height="80">
+						</td>
+						<td>${dto.protitle }</td>
+						<td>${dto.prokate_1 }</td>
+						<td>${dto.prokate_2 }</td>
+						<td>${dto.amount }</td>
+						<td><input type="button" value="장바구니 삭제"
+							onclick="location.href='cartdelete.do?cartno=${dto.cartno}&username=${login.username }'">
+						</td>
+					</tr>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+		<tr>
+			<td colspan="7" align="right">
+				<input type="button" value="구매리스트" onclick="location.href='dellist.do'">
+				<input type="button" value="상품보러가기" onclick="location.href='prolist.do'">
+				<input type="submit" value="체크한 목록 주문하기">
+			</td>
+		</tr>
+	</table>
+	</form>
+	
+	
+
+
+</body>
+</html>

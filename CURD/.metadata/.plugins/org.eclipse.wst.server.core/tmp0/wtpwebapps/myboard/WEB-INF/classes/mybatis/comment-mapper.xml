@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="comment">
+
+	<select id="commentList" resultType="commentDto">
+		SELECT COMMENTNO, GROUPNO, GROUPSEQ, TITLETAB, USERNAME, CCONTENT, CDATE 
+		FROM CBOARD
+		WHERE MYNO = #{myno}
+		ORDER BY GROUPNO DESC , GROUPSEQ ASC
+	</select>
+	
+	<insert id="insert" parameterType="commentDto">
+		INSERT INTO CBOARD
+		VALUES(COMMENTNOSEQ.NEXTVAL, GROUPNOSEQ.NEXTVAL, 1, 0, #{myno}, #{username}, #{ccontent}, SYSDATE)
+	</insert>
+
+	<update id="update" parameterType="commentDto">
+		UPDATE CBOARD
+		SET CCONTENT = #{ccontent}
+		WHERE COMMENTNO = #{commentno}
+	</update>
+	
+	<delete id="delete" parameterType="commentDto">
+		DELETE FROM CBOARD
+		WHERE COMMENTNO = #{commentno}
+		AND MYNO = #{myno}
+	</delete>
+	
+	<insert id="answerInsert" parameterType="commentDto">
+  		INSERT INTO CBOARD
+  		VALUES(
+  				COMMENTNOSEQ.NEXTVAL,
+  				(SELECT GROUPNO FROM CBOARD WHERE COMMENTNO = #{commentno}),
+				(SELECT GROUPSEQ FROM CBOARD WHERE COMMENTNO = #{commentno}) + 1,
+				(SELECT TITLETAB +1 FROM CBOARD WHERE COMMENTNO = #{commentno} ),
+				#{myno}, #{username}, #{ccontent}, SYSDATE		
+  				)
+  	</insert>
+  	
+  	
+  	<update id="answerUpdate" parameterType="commentDto">
+  		UPDATE CBOARD
+  		SET GROUPSEQ = GROUPSEQ +1
+  		WHERE GROUPNO = (SELECT GROUPNO FROM CBOARD WHERE COMMENTNO = #{commentno})
+  		AND GROUPSEQ > (SELECT GROUPSEQ FROM CBOARD WHERE COMMENTNO = #{commentno})
+  	</update>
+	
+</mapper>

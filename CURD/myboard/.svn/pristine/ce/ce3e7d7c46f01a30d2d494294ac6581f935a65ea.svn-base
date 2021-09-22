@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ordhis">
+	<select id="alllist" parameterType="String" resultType="ordhisDto">
+		SELECT ORDHISNO, USERNAME, DELNO, REASON, ORDHISDATE
+		FROM ORDHISTORY
+		WHERE USERNAME = '${username}'
+	</select>
+	
+	<select id="list" parameterType="String" resultType="ordhisDto">
+		SELECT USERNAME, DELNO, REASON, ORDHISDATE
+		FROM ORDHISTORY
+		WHERE DELNO = #{delno}
+		ORDER BY ORDHISNO DESC;
+	</select>
+	
+	<insert id="insert" parameterType="ordhisDto">
+		INSERT INTO ORDHISTORY
+		VALUES(ORDHISNOSEQ.NEXTVAL, #{username}, #{delno}, #{reason}, TO_CHAR(SYSDATE, 'YY-MM-DD')
+	</insert>
+	
+	<update id="update" parameterType="ordhisDto">
+		UPDATE ORDHISTORY
+		SET REASON = #{reason}
+		WHERE DELNO = #{delno}
+	</update>
+	
+</mapper>

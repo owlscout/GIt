@@ -1,0 +1,19 @@
+package com.mvc.myboard.address;
+
+import java.util.List;
+
+public interface addressBiz {
+
+	public List<addressDto> selectList(String username);
+
+	public addressDto main(String username);
+	
+	public int insert(addressDto dto);
+
+	public int mainupdate(addressDto dto);
+
+	public int delete(int addrno);
+
+	public int count(String username);
+
+}

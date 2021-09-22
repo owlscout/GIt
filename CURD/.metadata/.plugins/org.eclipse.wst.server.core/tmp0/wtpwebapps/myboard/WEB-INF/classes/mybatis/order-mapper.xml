@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="order">
+	<select id="list" parameterType="orderDto" resultType="orderDto">
+		SELECT ORDNO, DELNO, PRONO, PROTITLE, PRONAME, AMOUT, ORDPRICE, PRINCIPAL, TAX, USERNAME, ORDDATE
+		FROM ORDERCART
+		WHERE DELNO = #{delno}
+		ORDER BY ORDNO DESC
+	</select>
+	
+	<select id="select" resultType="orderDto">
+		SELECT ORDNO, DELNO, PRONO, PROTITLE, PRONAME, AMOUT, ORDPRICE, PRINCIPAL, TAX, USERNAME, ORDDATE
+		FROM ORDERCART
+		WHERE ORDNO = #{ordno}
+	</select>
+
+	<insert id="insert" parameterType="orderDto">
+		INSERT INTO ORDERCART
+		VALUES(('ORD'||TO_CHAR(SYSDATE, 'YYMMDD')||LPAD(ORDNOSEQ.NEXTVAL, 5, '0')), #{delno}, #{prono} ,#{protitle}, #{proname}, #{amout}, #{ordprice}, #{principal}, #{tax},
+		#{username} ,TO_CHAR(SYSDATE, 'YYMMDD'))
+	</insert>
+	
+	<update id="update" parameterType="orderDto">
+		UPDATE ORDERCART
+		SET PROTITLE =
+		#{protitle}, PROCONTENT = #{procontent}
+		WHERE ORDNO = #{ordno}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM ORDERCART
+		WHERE ORDNO
+		= #{ordno}
+	</delete>
+</mapper>
